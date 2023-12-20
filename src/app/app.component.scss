@@ -1,0 +1,34 @@
+.gallery_title {
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.gallery_wrap {
+  display: flex;
+}
+
+.gallery_image_frame {
+  width: 350px;
+  height: 350px;
+  padding: 10px;
+  border: 1px solid gray;
+  text-align: left;
+}
+
+.image {
+  height: 90%;
+  background-color: gray;
+}
+
+.button_wrap {
+  margin-top: 20px;
+}
+
+.add_button {
+  width: 100px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
