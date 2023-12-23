@@ -10,11 +10,12 @@ import { Post } from '../../types/PostTypes';
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss',
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent {
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
-  post: Post;
-  ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
+  post!: Post;
+
+  getDetailImage() {
+    const id = this.route.snapshot.params['id'];
     this.http
       .get<Post>(`http://localhost:3000/post/${id}`)
       .subscribe((post) => (this.post = post));

@@ -23,7 +23,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.http
-      .get<Post[]>('http://localhost:3000/post')
+      .get<Post[]>('http://localhost:3000')
       .subscribe((posts) => (this.posts = posts));
   }
 }

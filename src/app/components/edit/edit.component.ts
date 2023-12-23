@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Post } from '../../types/PostTypes';
+import imageCompression from 'browser-image-compression';
 
 @Component({
   selector: 'app-edit',
@@ -18,22 +19,42 @@ export class EditComponent {
 
   onTitleChange(event: Event) {
     this.title = (event.target as HTMLInputElement).value;
+    console.log(this.title, 'title');
   }
 
-  onImageChange(event: Event) {
-    this.image = (event.target as HTMLInputElement).files[0];
-    const formData = new FormData();
-    formData.append('image', this.image);
-    this.http.post('http://localhost:3000/upload', formData).subscribe();
+  async onImageChange(event: Event) {
+    try {
+      const inputElement = event.target as HTMLInputElement;
+      if (inputElement && inputElement.files && inputElement.files.length > 0) {
+        const options = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1920,
+        };
+        this.image = inputElement.files[0];
+        if (this.image.size > 1024 * 1024) {
+          alert('이미지 크기는 1MB를 초과할 수 없습니다.');
+          return;
+        }
+        const compressedImage = await imageCompression(this.image, options);
+        const formData = new FormData();
+        formData.append('image', compressedImage, compressedImage.name);
+        console.log(formData, 'formData');
+        this.http.post('http://localhost:3000/upload', formData).subscribe();
+      }
+    } catch (err: any) {
+      console.log(err);
+    }
   }
 
-  onSubmit() {
+  onSubmit(event: Event) {
+    event.preventDefault();
     const post: Post = {
-      id: Date.now(), // 대체로 서버에서 생성해야 합니다.
+      id: Date.now(),
       createdAt: new Date(),
       title: this.title,
-      image: this.image.name, // 여기서는 파일 이름을 사용하지만, 실제로는 업로드 후 반환된 파일 URL을 사용해야 합니다.
+      image: this.image.name,
     };
+    console.log(post);
     this.http.post('http://localhost:3000/post', post).subscribe();
   }
 }

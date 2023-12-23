@@ -5,6 +5,6 @@ import { DetailComponent } from './components/detail/detail.component';
 
 export const routes: Routes = [
   { path: '', component: AppComponent },
-  { path: ':id', component: DetailComponent },
+  { path: 'detail/:id', component: DetailComponent },
   { path: 'edit', component: EditComponent },
 ];
