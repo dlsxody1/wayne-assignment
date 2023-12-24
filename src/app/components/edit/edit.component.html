@@ -1,9 +1,9 @@
 <div>
   <form class="file_container" (submit)="onSubmit($event)">
-    <label>title</label>
-    <input type="text" (change)="onTitleChange($event)" />
-    <label>image</label>
+    <label class="title_label">title</label>
+    <input type="text" (change)="onTitleChange($event)" class="title_input" />
+    <label class="image_label">image</label>
     <input type="file" (change)="onImageChange($event)" accept="image/*" />
-    <button type="submit">이미지 추가</button>
+    <button class="submit_button" type="submit">이미지 추가</button>
   </form>
 </div>

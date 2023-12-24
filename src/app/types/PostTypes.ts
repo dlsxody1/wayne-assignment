@@ -4,3 +4,5 @@ export interface Post {
   title: string;
   image: string;
 }
+
+export type CreatePost = Omit<Post, 'id' | 'createdAt'>;

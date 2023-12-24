@@ -1,5 +1,21 @@
 .file_container {
   display: flex;
   flex-direction: column;
-  
+}
+
+.title_label,
+.image_label {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.title_input {
+  width: 400px;
+  height: 30px;
+}
+
+.submit_button {
+  margin-top: 10px;
+  width: 400px;
 }

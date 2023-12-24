@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { Post } from '../../types/PostTypes';
+import { Router, RouterModule } from '@angular/router';
+import { CreatePost, Post } from '../../types/PostTypes';
 import imageCompression from 'browser-image-compression';
 
 @Component({
@@ -14,8 +14,9 @@ import imageCompression from 'browser-image-compression';
 export class EditComponent {
   title!: string;
   image!: File;
+  url!: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   onTitleChange(event: Event) {
     this.title = (event.target as HTMLInputElement).value;
@@ -39,7 +40,12 @@ export class EditComponent {
         const formData = new FormData();
         formData.append('image', compressedImage, compressedImage.name);
         console.log(formData, 'formData');
-        this.http.post('http://localhost:3000/upload', formData).subscribe();
+        this.http
+          .post('http://localhost:3000/upload', formData)
+          .subscribe((response: any) => {
+            console.log(response);
+            this.url = response.url;
+          });
       }
     } catch (err: any) {
       console.log(err);
@@ -48,13 +54,13 @@ export class EditComponent {
 
   onSubmit(event: Event) {
     event.preventDefault();
-    const post: Post = {
-      id: Date.now(),
-      createdAt: new Date(),
+    console.log(this.image, 'image');
+    const post: CreatePost = {
       title: this.title,
-      image: this.image.name,
+      image: this.url,
     };
     console.log(post);
     this.http.post('http://localhost:3000/post', post).subscribe();
+    this.router.navigate(['/']);
   }
 }
