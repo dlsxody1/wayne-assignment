@@ -1,27 +1,20 @@
-# WayneAssignment
+## 스택구성
+```
+Angular.js
+SCSS
+```
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+## 실행 방법
+```
+npm install
+ng serve
+```
 
-## Development server
+## 결과 화면
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### 이미지 업로드
+![Honeycam 2023-12-27 14-13-16](https://github.com/dlsxody1/wayne-assignment/assets/62875596/08abed88-42d6-4820-8333-eec95ba6dc55)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### 이미지 상세 확인
+![Honeycam 2023-12-27 14-23-17](https://github.com/dlsxody1/wayne-assignment/assets/62875596/dd699df4-05fe-46ae-a147-7c1f8741d6b8)
